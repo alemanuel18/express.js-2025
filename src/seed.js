@@ -1,8 +1,22 @@
+/**
+ * @file seed.js
+ * @description Database seeding script. Populates the database with initial users, time blocks, and appointments for local development.
+ */
+
 import { PrismaClient } from '../generated/prisma';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
+/**
+ * Prisma Client instance extended with Accelerate.
+ */
 const prisma = new PrismaClient().$extends(withAccelerate());
 
+/**
+ * Main seeding function that inserts seed records into the database.
+ * @async
+ * @function main
+ * @returns {Promise<void>}
+ */
 async function main() {
 	// Crear usuarios
 	const user1 = await prisma.user.create({

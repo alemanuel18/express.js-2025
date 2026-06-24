@@ -1,5 +1,18 @@
+/**
+ * @file controllers/authController.js
+ * @description Controllers handling authentication requests such as user registration and login.
+ */
+
 import { registerUser, loginUser } from '../services/authService.js';
 
+/**
+ * Registers a new user.
+ * @async
+ * @function register
+ * @param {import('express').Request} req - Express request object. Should contain email, password, and name in req.body.
+ * @param {import('express').Response} res - Express response object.
+ * @returns {Promise<import('express').Response>} HTTP 201 response on success, or 400 response on error.
+ */
 export const register = async (req, res) => {
 	try {
 		const { email, password, name } = req.body;
@@ -10,6 +23,14 @@ export const register = async (req, res) => {
 	}
 };
 
+/**
+ * Logins a user and issues a JWT token.
+ * @async
+ * @function login
+ * @param {import('express').Request} req - Express request object. Should contain email and password in req.body.
+ * @param {import('express').Response} res - Express response object.
+ * @returns {Promise<import('express').Response>} HTTP 200 response with token on success, or 401 response on invalid credentials.
+ */
 export const login = async (req, res) => {
 	try {
 		const { email, password } = req.body;
